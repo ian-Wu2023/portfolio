@@ -6,11 +6,10 @@
   <title>Ian Wu - Computer Science Portfolio</title>
 
   <!-- Meta description and basic social sharing -->
-  <meta name="description" content="Computer Science student specializing in statistical analysis with R, Python, and Java. Projects include COVID-19 time series, inflation trends, and Java statistics." />
+  <meta name="description" content="Computer Science student specializing in software, automation, and statistical analysis with Python, Java, JavaScript, and R. Projects include COVID-19 time series, inflation trends, trading bot, and more." />
   <meta property="og:title" content="Ian Wu - Computer Science Portfolio" />
-  <meta property="og:description" content="Statistical analysis projects in R, Python, and Java with visualizations and code samples." />
+  <meta property="og:description" content="Projects and code in Python, Java, JavaScript, and R. Visualizations, automation, and data analysis." />
   <meta property="og:type" content="website" />
-  <!-- Optionally set og:image to one of your images -->
   <meta property="og:image" content="assets/images/econ_scatter.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
@@ -64,14 +63,23 @@
           Computer Science Student
         </h1>
         <p class="text-xl md:text-2xl text-gray-400 mb-8">
-          Specializing in Statistical Analysis with R, Python, and Java
+          Specializing in Software, Automation, and Statistical Analysis with Python, Java, JavaScript, and R
         </p>
-        <div class="flex gap-4 justify-center">
+        <div class="flex flex-wrap gap-4 justify-center">
           <a href="#projects" class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-lg font-semibold transition">
             View Projects
           </a>
           <a href="#contact" class="border border-gray-600 hover:border-blue-400 px-8 py-3 rounded-lg font-semibold transition">
             Get in Touch
+          </a>
+          <!-- LinkedIn button with icon in hero -->
+          <a href="https://www.linkedin.com/in/ian-wu-techian3481/"
+             target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 border border-[#0A66C2] text-[#0A66C2] hover:bg-[#0A66C2] hover:text-white px-8 py-3 rounded-lg font-semibold transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4v15h-4V8zm7.5 0h3.83v2.05h.05c.53-1 1.82-2.05 3.75-2.05 4.01 0 4.77 2.64 4.77 6.06V23h-4v-6.5c0-1.55-.03-3.55-2.17-3.55-2.17 0-2.5 1.69-2.5 3.43V23h-4V8z"/>
+            </svg>
+            Connect on LinkedIn
           </a>
         </div>
       </div>
@@ -82,13 +90,10 @@
         <h2 class="text-4xl font-bold mb-8 gradient-text">About Me</h2>
         <div class="text-lg text-gray-300 space-y-4">
           <p>
-            I'm a computer science student with three years of bachelor's level study,
-            passionate about using data and statistical analysis to solve real-world problems.
+            Results-oriented Computer Science student (BSc, Open University — expected 2025) with a strong foundation in software development, automation, and data analysis. I’ve built full-scale applications ranging from a real-time trading bot to interactive games, and I enjoy turning complex data into clear, actionable outputs.
           </p>
           <p>
-            My expertise lies in statistical computing using R, Python, and Java. I enjoy
-            exploring complex datasets and turning them into actionable insights through
-            visualization and analysis.
+            I work primarily with Python, Java, and JavaScript, with additional experience in R for statistical analysis. I bring 7+ years of client-facing experience to technical projects, emphasizing problem‑solving, agile workflows, and user‑centric delivery. I’m seeking opportunities in software development or automation engineering.
           </p>
         </div>
       </div>
@@ -102,9 +107,7 @@
           <div class="bg-gray-800 rounded-lg p-6 hover:transform hover:scale-105 transition">
             <h3 class="text-2xl font-bold mb-4 text-blue-400">COVID-19 Data Analysis</h3>
             <p class="text-gray-300 mb-4">
-              Comprehensive statistical analysis of COVID-19 trends using R and Python.
-              Features time-series analysis, predictive modeling, and interactive visualizations
-              of infection rates, mortality data, and vaccination progress across different regions.
+              Statistical analysis of COVID-19 trends using R and Python. Features time-series analysis, predictive modeling, and visualizations of infection rates and mortality across regions.
             </p>
             <div class="flex flex-wrap gap-2 mb-4">
               <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">R</span>
@@ -142,9 +145,7 @@
           <div class="bg-gray-800 rounded-lg p-6 hover:transform hover:scale-105 transition">
             <h3 class="text-2xl font-bold mb-4 text-purple-400">Inflation Trends Analysis</h3>
             <p class="text-gray-300 mb-4">
-              Economic data analysis project examining inflation patterns and their impact on
-              various sectors. Implemented regression models in R and Python to forecast inflation
-              rates and visualized correlations with employment, GDP, and consumer spending.
+              Economic data analysis examining inflation patterns and their impact on employment and spending. Regression models in R/Python and correlation visualizations.
             </p>
             <div class="flex flex-wrap gap-2 mb-4">
               <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">R</span>
@@ -176,6 +177,48 @@
             <a href="assets/images/econ_scatter.png" target="_blank" rel="noopener noreferrer">
               <img src="assets/images/econ_scatter.png" alt="Scatter plot: CPI inflation vs unemployment with trend line" class="rounded mt-4" loading="lazy">
             </a>
+          </div>
+        </div>
+
+        <!-- Additional projects from CV -->
+        <div class="mt-12 grid md:grid-cols-3 gap-8">
+          <div class="bg-gray-800 rounded-lg p-6">
+            <h3 class="text-xl font-bold mb-3 text-cyan-400">Real‑Time Crypto Trading Bot</h3>
+            <p class="text-gray-300 text-sm mb-3">
+              JavaScript app using WebSockets to stream live Binance market data and compute RSI‑based buy/sell signals. UI for price charts, holdings, and trade history.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span class="bg-sky-600 px-3 py-1 rounded-full text-xs">JavaScript</span>
+              <span class="bg-emerald-600 px-3 py-1 rounded-full text-xs">WebSocket</span>
+              <span class="bg-fuchsia-600 px-3 py-1 rounded-full text-xs">Binance API</span>
+            </div>
+            <div class="text-xs text-gray-400">Links: <span class="italic">Add GitHub/demo when ready</span></div>
+          </div>
+
+          <div class="bg-gray-800 rounded-lg p-6">
+            <h3 class="text-xl font-bold mb-3 text-amber-400">Pong Game (Pygame)</h3>
+            <p class="text-gray-300 text-sm mb-3">
+              Classic Pong game built with Pygame. Collision detection, score tracking, input handling. OOP structure for maintainability.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span class="bg-yellow-600 px-3 py-1 rounded-full text-xs">Python</span>
+              <span class="bg-purple-600 px-3 py-1 rounded-full text-xs">Pygame</span>
+              <span class="bg-blue-700 px-3 py-1 rounded-full text-xs">OOP</span>
+            </div>
+            <div class="text-xs text-gray-400">Links: <span class="italic">Add GitHub/demo when ready</span></div>
+          </div>
+
+          <div class="bg-gray-800 rounded-lg p-6">
+            <h3 class="text-xl font-bold mb-3 text-rose-400">OOP Calculator (Java)</h3>
+            <p class="text-gray-300 text-sm mb-3">
+              Functional calculator in Java applying encapsulation and inheritance. Clean structure for future features and UI improvements.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span class="bg-red-600 px-3 py-1 rounded-full text-xs">Java</span>
+              <span class="bg-indigo-600 px-3 py-1 rounded-full text-xs">OOP</span>
+              <span class="bg-gray-700 px-3 py-1 rounded-full text-xs">BlueJ</span>
+            </div>
+            <div class="text-xs text-gray-400">Links: <span class="italic">Add GitHub/demo when ready</span></div>
           </div>
         </div>
 
@@ -218,6 +261,7 @@
                 <li><a href="assets/code/generate_portfolio_visualizations.py" download class="hover:text-green-400">Python Visualizations Script (.py)</a></li>
                 <li><a href="assets/code/econ_analysis.R" download class="hover:text-green-400">R Inflation Analysis (.R)</a></li>
               </ul>
+              <!-- If your host blocks downloads of .py or .R, remove 'download' or zip them. -->
             </div>
           </div>
         </div>
@@ -229,35 +273,57 @@
         <h2 class="text-4xl font-bold mb-12 gradient-text">Skills & Technologies</h2>
         <div class="grid md:grid-cols-3 gap-6">
           <div class="bg-gray-800 rounded-lg p-6">
-            <h3 class="text-xl font-bold mb-4 text-blue-400">Languages</h3>
+            <h3 class="text-xl font-bold mb-4 text-blue-400">Programming</h3>
             <ul class="space-y-2 text-gray-300">
-              <li>• R</li>
               <li>• Python</li>
               <li>• Java</li>
-              <li>• SQL</li>
+              <li>• JavaScript</li>
+              <li>• R</li>
+              <li>• HTML/CSS</li>
             </ul>
           </div>
           <div class="bg-gray-800 rounded-lg p-6">
-            <h3 class="text-xl font-bold mb-4 text-purple-400">Libraries & Frameworks</h3>
+            <h3 class="text-xl font-bold mb-4 text-purple-400">Frameworks & APIs</h3>
             <ul class="space-y-2 text-gray-300">
-              <li>• Pandas</li>
-              <li>• NumPy</li>
-              <li>• ggplot2</li>
-              <li>• Matplotlib</li>
-              <li>• Scikit-learn</li>
+              <li>• Pygame</li>
+              <li>• Node.js</li>
+              <li>• React (learning/working knowledge)</li>
+              <li>• RESTful APIs</li>
+              <li>• WebSocket / Binance API</li>
             </ul>
           </div>
           <div class="bg-gray-800 rounded-lg p-6">
-            <h3 class="text-xl font-bold mb-4 text-green-400">Analysis & Tools</h3>
+            <h3 class="text-xl font-bold mb-4 text-green-400">Tools & Concepts</h3>
             <ul class="space-y-2 text-gray-300">
-              <li>• Statistical Modeling</li>
-              <li>• Data Visualization</li>
-              <li>• Time-Series Analysis</li>
-              <li>• Regression Analysis</li>
-              <li>• Git</li>
+              <li>• Git, Jira (or similar)</li>
+              <li>• SPSS, Minitab</li>
+              <li>• OOP, Data Structures & Algorithms</li>
+              <li>• Data Analysis, Statistical Modeling</li>
+              <li>• Agile methodologies</li>
             </ul>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Education and Certifications (optional; included based on CV) -->
+    <section class="py-20 bg-gray-800/50">
+      <div class="max-w-4xl mx-auto px-6">
+        <h2 class="text-4xl font-bold mb-8 gradient-text">Education</h2>
+        <div class="text-lg text-gray-300 space-y-2">
+          <p><span class="font-semibold">BSc Computer Science</span> — Open University (Expected 2025)</p>
+          <p class="text-gray-400">Relevant coursework: Algorithms & Data Structures, Software Engineering, OOP, Web Development</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16">
+      <div class="max-w-4xl mx-auto px-6">
+        <h2 class="text-4xl font-bold mb-8 gradient-text">Certifications</h2>
+        <ul class="list-disc list-inside text-lg text-gray-300 space-y-2">
+          <li>Google IT Automation with Python Professional Certificate — 2023</li>
+          <li>Level 1 Award in Health & Safety — Barnet College, 2024</li>
+        </ul>
       </div>
     </section>
 
@@ -267,10 +333,42 @@
         <p class="text-xl text-gray-300 mb-8">
           Interested in collaborating or have a question? Feel free to reach out!
         </p>
-        <a href="mailto:ian.kin.wu@gmail.com"
-           class="inline-block bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-lg font-semibold transition">
-          Email Me: ian.kin.wu@gmail.com
-        </a>
+
+        <div class="flex flex-col md:flex-row gap-3 justify-center items-center">
+          <a href="mailto:ian.kin.wu@gmail.com"
+             class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20 4H4a2 2 0 00-2 2v.4l10 5.6 10-5.6V6a2 2 0 00-2-2zm0 4.4l-8.6 4.8a1 1 0 01-.8 0L2 8.4V18a2 2 0 002 2h16a2 2 0 002-2V8.4z"/>
+            </svg>
+            Email: ian.kin.wu@gmail.com
+          </a>
+
+          <a href="tel:+447853207881"
+             class="inline-flex items-center gap-2 border border-gray-600 hover:border-blue-400 px-6 py-3 rounded-lg font-semibold transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V21a1 1 0 01-1 1C10.4 22 2 13.6 2 3a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+            </svg>
+            Phone: +44 7853 207881
+          </a>
+
+          <!-- LinkedIn button with icon in contact -->
+          <a href="https://www.linkedin.com/in/ian-wu-techian3481/"
+             target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 border border-[#0A66C2] text-[#0A66C2] hover:bg-[#0A66C2] hover:text-white px-6 py-3 rounded-lg font-semibold transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4v15h-4V8zm7.5 0h3.83v2.05h.05c.53-1 1.82-2.05 3.75-2.05 4.01 0 4.77 2.64 4.77 6.06V23h-4v-6.5c0-1.55-.03-3.55-2.17-3.55-2.17 0-2.5 1.69-2.5 3.43V23h-4V8z"/>
+            </svg>
+            LinkedIn
+          </a>
+
+          <a href="https://github.com/ian-Wu2023" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 border border-gray-600 hover:border-blue-400 px-6 py-3 rounded-lg font-semibold transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.26c0 4.51 2.87 8.33 6.85 9.68.5.09.68-.22.68-.49 0-.24-.01-.87-.01-1.7-2.79.62-3.38-1.2-3.38-1.2-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06 .9 1.58 2.36 1.13 2.93.86.09-.67.35-1.13.63-1.39-2.22-.26-4.55-1.14-4.55-5.08 0-1.12.39-2.03 1.03-2.74-.1-.26-.45-1.3.1-2.7 0 0 .84-.27 2.75 1.04A9.3 9.3 0 0112 7.5c.85 0 1.71.12 2.51.35 1.9-1.31 2.74-1.04 2.74-1.04.55 1.4.2 2.44.1 2.7.64.71 1.03 1.62 1.03 2.74 0 3.95-2.34 4.81-4.57 5.07.36.32.68.96.68 1.95 0 1.4-.01 2.53-.01 2.88 0 .27.18.59.69.49A10.05 10.05 0 0022 12.26C22 6.58 17.52 2 12 2z" clip-rule="evenodd"/>
+            </svg>
+            GitHub
+          </a>
+        </div>
       </div>
     </section>
   </main>
