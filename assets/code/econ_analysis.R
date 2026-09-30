@@ -1,7 +1,9 @@
 
 # Load required libraries
 library(ggplot2)
-library(dplyr)
+args <- commandArgs(trailingOnly = TRUE)
+output_dir <- if (length(args)) args[[1]] else "assets/images"
+dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
 
 # Generate synthetic economic data
 set.seed(42)
@@ -39,12 +41,12 @@ cat("R-squared:", round(summary_stats$r.squared, 3), "\n")
 cat("P-value:", format(summary_stats$coefficients[2,4], scientific = TRUE), "\n")
 
 # Create scatter plot with regression line (16:9 aspect ratio)
-png("econ_scatter.png", width = 1600, height = 900, res = 150)
+png(file.path(output_dir, "econ_scatter.png"), width = 1600, height = 900, res = 150)
 p <- ggplot(econ_data, aes(x = cpi_inflation, y = unemployment_rate)) +
   geom_point(color = "#2E86AB", size = 3, alpha = 0.7) +
-  geom_smooth(method = "lm", color = "#A23B72", size = 1.2, se = TRUE, alpha = 0.2) +
+  geom_smooth(method = "lm", color = "#A23B72", linewidth = 1.2, se = TRUE, alpha = 0.2) +
   labs(
-    title = "Relationship Between CPI Inflation and Unemployment Rate",
+    title = "Synthetic Inflation and Unemployment — Regression Demonstration",
     subtitle = paste("Correlation coefficient:", round(correlation, 3), 
                     "| R² =", round(summary_stats$r.squared, 3)),
     x = "CPI Inflation Rate (%)",
@@ -57,8 +59,8 @@ p <- ggplot(econ_data, aes(x = cpi_inflation, y = unemployment_rate)) +
     plot.subtitle = element_text(size = 12, hjust = 0.5),
     axis.title = element_text(size = 12, face = "bold"),
     axis.text = element_text(size = 10),
-    panel.grid.major = element_line(alpha = 0.3),
-    panel.grid.minor = element_line(alpha = 0.1),
+    panel.grid.major = element_line(colour = "grey85"),
+    panel.grid.minor = element_line(colour = "grey95"),
     plot.caption = element_text(size = 9, color = "gray50")
   ) +
   scale_x_continuous(breaks = seq(0, 8, 1)) +
@@ -67,50 +69,5 @@ p <- ggplot(econ_data, aes(x = cpi_inflation, y = unemployment_rate)) +
 print(p)
 dev.off()
 
-# Create R code screenshot (4:3 aspect ratio)
-code_text <- "# Economic Data Analysis with R and ggplot2
-library(ggplot2)
-library(dplyr)
-
-# Load economic dataset
-econ_data <- read.csv('economic_data.csv')
-
-# Data preprocessing
-econ_data$date <- as.Date(econ_data$date)
-econ_data <- econ_data %>%
-  mutate(
-    cpi_change = (cpi - lag(cpi)) / lag(cpi) * 100,
-    unemployment_change = unemployment - lag(unemployment)
-  )
-
-# Statistical tests
-cor_test <- cor.test(econ_data$cpi_inflation, 
-                    econ_data$unemployment_rate)
-print(paste('Correlation:', round(cor_test$estimate, 3)))
-print(paste('P-value:', format(cor_test$p.value, scientific = TRUE)))
-
-# Linear regression analysis
-model <- lm(unemployment_rate ~ cpi_inflation + 
-           I(cpi_inflation^2), data = econ_data)
-summary(model)
-
-# Advanced visualization with ggplot2
-ggplot(econ_data, aes(x = cpi_inflation, y = unemployment_rate)) +
-  geom_point(aes(color = year), size = 3, alpha = 0.7) +
-  geom_smooth(method = 'lm', se = TRUE, color = 'red') +
-  scale_color_gradient(low = 'blue', high = 'red') +
-  labs(title = 'Phillips Curve Analysis',
-       subtitle = 'CPI Inflation vs Unemployment Rate',
-       x = 'CPI Inflation Rate (%)',
-       y = 'Unemployment Rate (%)') +
-  theme_minimal() +
-  theme(plot.title = element_text(size = 16, face = 'bold'))"
-
-png("econ_code.png", width = 1200, height = 900, res = 120)
-par(mar = c(0, 0, 0, 0))
-plot.new()
-text(0.05, 0.95, code_text, adj = c(0, 1), cex = 0.8, family = "mono", 
-     col = "black")
-dev.off()
-
-cat("R analysis completed successfully!\n")
+write.csv(econ_data, file.path(output_dir, "economic_demo_data.csv"), row.names = FALSE)
+cat("Synthetic R regression demonstration completed.\n")
