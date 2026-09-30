@@ -1,0 +1,21 @@
+{
+  "time_series": {
+    "data_type": "synthetic",
+    "seed": 42,
+    "model": "ARIMA(2,1,2)",
+    "training_observations": 1480,
+    "forecast_days": 60,
+    "mae_cases": 179.26621383286346,
+    "rmse_cases": 215.70073815861286,
+    "converged": true
+  },
+  "numpy_statistics": {
+    "Mean": 99.5666267350608,
+    "Median": 100.09266807098754,
+    "Population SD": 14.830835330947618,
+    "Minimum": 45.273807621778246,
+    "Maximum": 147.68280519051302,
+    "Q1": 89.55530628132855,
+    "Q3": 108.8483011783756
+  }
+}

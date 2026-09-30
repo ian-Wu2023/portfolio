@@ -6,15 +6,15 @@
   <title>Ian Wu - Computer Science Portfolio</title>
 
   <!-- Meta description and basic social sharing -->
-  <meta name="description" content="Computer Science student specializing in software, automation, and statistical analysis with Python, Java, JavaScript, and R. Projects include COVID-19 time series, inflation trends, trading bot, and more." />
+  <meta name="description" content="Ian Wu’s software, automation and data portfolio, featuring reproducible synthetic statistical demonstrations and a global CO2 analysis project." />
   <meta property="og:title" content="Ian Wu - Computer Science Portfolio" />
-  <meta property="og:description" content="Projects and code in Python, Java, JavaScript, and R. Visualizations, automation, and data analysis." />
+  <meta property="og:description" content="Runnable Python and R demonstrations, clearly labelled synthetic data, and global CO2 analysis." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="assets/images/econ_scatter.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Favicon (optional) -->
-  <link rel="icon" href="assets/icons/favicon.ico" />
+  <link rel="icon" href="assets/icons/favicon.svg" />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -38,6 +38,8 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+    html { scroll-behavior: smooth; }
+    section[id] { scroll-margin-top: 6rem; }
     /* Reduced motion support */
     @media (prefers-reduced-motion: reduce) {
       * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
@@ -51,7 +53,7 @@
 </head>
 <body>
   <!-- Skip link -->
-  <a class="sr-only focus:not-sr-only p-2 bg-gray-700 text-white absolute left-2 top-2 rounded" href="#main">
+  <a class="sr-only focus:not-sr-only p-2 bg-gray-700 text-white absolute left-2 top-2 rounded z-[60]" href="#main">
     Skip to main content
   </a>
 
@@ -96,7 +98,7 @@
     <section class="min-h-screen flex items-center justify-center pt-20">
       <div class="max-w-4xl mx-auto px-6 text-center">
         <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text">
-          Computer Science Student
+          Software, Automation & Data
         </h1>
         <p class="text-xl md:text-2xl text-gray-400 mb-8">
           Specializing in Software, Automation, and Statistical Analysis with Python, Java, JavaScript, and R
@@ -132,7 +134,7 @@
         <h2 class="text-4xl font-bold mb-8 gradient-text">About Me</h2>
         <div class="text-lg text-gray-300 space-y-4">
           <p>
-            Results-oriented Computer Science student (BSc, Open University — expected 2025) with a strong foundation in software development, automation, and data analysis. I’ve built full-scale applications ranging from a real-time trading bot to interactive games, and I enjoy turning complex data into clear, actionable outputs.
+            My Computer Science studies at the Open University have covered software development, automation and data analysis. This portfolio brings together practical projects and statistical demonstrations, with source code where available.
           </p>
           <p>
             I work primarily with Python, Java, and JavaScript, with additional experience in R for statistical analysis. I bring 7+ years of client-facing experience to technical projects, emphasizing problem-solving, agile workflows, and user-centric delivery. I’m seeking opportunities in software development or automation engineering.
@@ -148,24 +150,18 @@
         <div class="grid md:grid-cols-2 gap-8">
           <!-- COVID project -->
           <div class="bg-gray-800 rounded-lg p-6 hover:transform hover:scale-105 transition">
-            <h3 class="text-2xl font-bold mb-4 text-blue-400">COVID-19 Data Analysis</h3>
+            <h3 class="text-2xl font-bold mb-4 text-blue-400">Synthetic Time-Series Forecasting</h3>
             <p class="text-gray-300 mb-4">
-              Statistical analysis of COVID-19 trends using R and Python. Features time-series analysis, predictive modeling, and visualizations of infection rates and mortality across regions.
+              A Python teaching demonstration using synthetic COVID-shaped counts. Includes an ARIMA forecast and held-out error measurements. These are simulated observations, not real COVID-19 data.
             </p>
             <div class="flex flex-wrap gap-2 mb-4">
-              <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">R</span>
               <span class="bg-purple-600 px-3 py-1 rounded-full text-sm">Python</span>
               <span class="bg-green-600 px-3 py-1 rounded-full text-sm">Pandas</span>
-              <span class="bg-yellow-600 px-3 py-1 rounded-full text-sm">ggplot2</span>
+              <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">Statsmodels</span>
             </div>
             
             <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-300">Project Files:</h4>
             <ul class="text-sm space-y-1 text-gray-400">
-              <li>
-                <a href="assets/images/covid_code.png" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400">
-                  Code Snippet (PNG)
-                </a>
-              </li>
               <li>
                 <a href="assets/images/covid_timeseries.png" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400">
                   Time-Series Visualization (PNG)
@@ -180,21 +176,25 @@
             
             <!-- Optional inline preview -->
             <a href="assets/images/covid_timeseries.png" target="_blank" rel="noopener noreferrer">
-              <img src="assets/images/covid_timeseries.png" alt="COVID-19 daily cases and deaths time series with ARIMA forecast" class="rounded mt-4" loading="lazy">
+              <img src="assets/images/covid_timeseries.png" alt="Synthetic daily cases and deaths with an illustrative ARIMA forecast" class="rounded mt-4" loading="lazy">
             </a>
+          </div>
+
+          <div class="bg-gray-800 rounded-lg p-6">
+            <h3 class="text-2xl font-bold mb-4 text-green-400">Global CO₂ Analysis</h3>
+            <p class="text-gray-300 mb-4">Interactive Plotly charts of emissions over time, country rankings and per-capita emissions, using Our World in Data.</p>
+            <a href="https://github.com/ian-Wu2023/Global-Co2-Analysis" target="_blank" rel="noopener noreferrer" class="underline text-blue-300 hover:text-blue-200">View source code and project documentation</a>
           </div>
 
           <!-- Inflation project -->
           <div class="bg-gray-800 rounded-lg p-6 hover:transform hover:scale-105 transition">
-            <h3 class="text-2xl font-bold mb-4 text-purple-400">Inflation Trends Analysis</h3>
+            <h3 class="text-2xl font-bold mb-4 text-purple-400">Synthetic Economic Regression</h3>
             <p class="text-gray-300 mb-4">
-              Economic data analysis examining inflation patterns and their impact on employment and spending. Regression models in R/Python and correlation visualizations.
+              An R demonstration of correlation and linear regression using 200 synthetic inflation and unemployment observations. The data are generated locally; the results do not establish real economic relationships.
             </p>
             <div class="flex flex-wrap gap-2 mb-4">
               <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">R</span>
-              <span class="bg-purple-600 px-3 py-1 rounded-full text-sm">Python</span>
-              <span class="bg-red-600 px-3 py-1 rounded-full text-sm">NumPy</span>
-              <span class="bg-indigo-600 px-3 py-1 rounded-full text-sm">Matplotlib</span>
+              <span class="bg-indigo-600 px-3 py-1 rounded-full text-sm">ggplot2</span>
             </div>
             
             <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-300">Project Files:</h4>
@@ -202,11 +202,6 @@
               <li>
                 <a href="assets/code/econ_analysis.R" download class="hover:text-purple-400">
                   R Analysis Script (.R)
-                </a>
-              </li>
-              <li>
-                <a href="assets/images/econ_code.png" target="_blank" rel="noopener noreferrer" class="hover:text-purple-400">
-                  Code Snippet (PNG)
                 </a>
               </li>
               <li>
@@ -218,7 +213,7 @@
             
             <!-- Optional inline preview -->
             <a href="assets/images/econ_scatter.png" target="_blank" rel="noopener noreferrer">
-              <img src="assets/images/econ_scatter.png" alt="Scatter plot: CPI inflation vs unemployment with trend line" class="rounded mt-4" loading="lazy">
+              <img src="assets/images/econ_scatter.png" alt="Synthetic inflation and unemployment observations with a regression line" class="rounded mt-4" loading="lazy">
             </a>
           </div>
         </div>
@@ -235,7 +230,7 @@
               <span class="bg-emerald-600 px-3 py-1 rounded-full text-xs">WebSocket</span>
               <span class="bg-fuchsia-600 px-3 py-1 rounded-full text-xs">Binance API</span>
             </div>
-            <div class="text-xs text-gray-400">Links: <span class="italic"></span></div>
+            <p class="text-xs text-gray-400">Source code and live demo are not published in this repository.</p>
           </div>
 
           <div class="bg-gray-800 rounded-lg p-6">
@@ -248,7 +243,7 @@
               <span class="bg-purple-600 px-3 py-1 rounded-full text-xs">Pygame</span>
               <span class="bg-blue-700 px-3 py-1 rounded-full text-xs">OOP</span>
             </div>
-            <div class="text-xs text-gray-400">Links: <span class="italic"></span></div>
+            <p class="text-xs text-gray-400">Source code and live demo are not published in this repository.</p>
           </div>
 
           <div class="bg-gray-800 rounded-lg p-6">
@@ -261,51 +256,23 @@
               <span class="bg-indigo-600 px-3 py-1 rounded-full text-xs">OOP</span>
               <span class="bg-gray-700 px-3 py-1 rounded-full text-xs">BlueJ</span>
             </div>
-            <div class="text-xs text-gray-400">Links: <span class="italic"></span></div>
+            <p class="text-xs text-gray-400">Source code and live demo are not published in this repository.</p>
           </div>
         </div>
 
         <div class="mt-12 p-6 bg-gray-800 rounded-lg">
-          <h3 class="text-2xl font-bold mb-4 gradient-text">Additional Statistical & Code Samples</h3>
-          <div class="grid md:grid-cols-3 gap-4">
-            <div class="text-sm space-y-1">
-              <h4 class="font-semibold text-blue-400">Reports/Summaries:</h4>
-              <ul class="text-gray-400">
-                <li>
-                  <a href="assets/docs/statistical_analysis_portfolio.pdf" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400">
-                    Full Portfolio Report (PDF)
-                  </a>
-                </li>
-                <li>
-                  <a href="assets/docs/statistical_analysis_portfolio.md" download class="hover:text-blue-400">
-                    Portfolio Summary (Markdown)
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div class="text-sm space-y-1">
-              <h4 class="font-semibold text-purple-400">Java Code Examples:</h4>
-              <ul class="text-gray-400">
-                <li>
-                  <a href="assets/images/java_code.png" target="_blank" rel="noopener noreferrer" class="hover:text-purple-400">
-                    Java Code Snippet (PNG)
-                  </a>
-                </li>
-                <li>
-                  <a href="assets/images/java_stats.png" target="_blank" rel="noopener noreferrer" class="hover:text-purple-400">
-                    Java Statistical Output (PNG)
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div class="text-sm space-y-1">
-              <h4 class="font-semibold text-green-400">Source Code:</h4>
-              <ul class="text-gray-400">
-                <li><a href="assets/code/generate_portfolio_visualizations.py" download class="hover:text-green-400">Python Visualizations Script (.py)</a></li>
-                <li><a href="assets/code/econ_analysis.R" download class="hover:text-green-400">R Inflation Analysis (.R)</a></li>
-              </ul>
-            </div>
-          </div>
+          <h3 class="text-2xl font-bold mb-4 gradient-text">Reproduce the Demonstrations</h3>
+          <p class="text-gray-300 mb-4">All statistical examples on this page use synthetic data. Read the current summary for the methods, data generation and limitations.</p>
+          <ul class="list-disc list-inside text-gray-300 space-y-2">
+            <li><a class="underline hover:text-blue-400" href="https://github.com/ian-Wu2023/portfolio/blob/main/README.md">Setup instructions and source repository</a></li>
+            <li><a class="underline hover:text-blue-400" href="assets/docs/statistical_analysis_portfolio.md" download>Current project summary (Markdown)</a></li>
+            <li><a class="underline hover:text-blue-400" href="assets/code/generate_portfolio_visualizations.py" download>Runnable Python demonstrations</a></li>
+            <li><a class="underline hover:text-blue-400" href="assets/code/econ_analysis.R" download>Runnable R regression demonstration</a></li>
+            <li><a class="underline hover:text-blue-400" href="assets/images/demo_metrics.json">Synthetic forecast metrics and NumPy statistics (JSON)</a></li>
+          </ul>
+          <h4 class="text-lg font-semibold mt-6 mb-2">Descriptive Statistics with Python/NumPy</h4>
+          <p class="text-gray-300">A seeded synthetic sample of 1,000 observations, with population standard deviation and quartiles computed in NumPy.</p>
+          <img src="assets/images/statistics.png" alt="NumPy descriptive statistics for a synthetic sample: mean, median, population standard deviation and quartiles" class="rounded mt-4" loading="lazy">
         </div>
       </div>
     </section>
@@ -353,7 +320,7 @@
       <div class="max-w-4xl mx-auto px-6">
         <h2 class="text-4xl font-bold mb-8 gradient-text">Education</h2>
         <div class="text-lg text-gray-300 space-y-2">
-          <p><span class="font-semibold">BSc Computer Science</span> — Open University (Expected 2025)</p>
+          <p><span class="font-semibold">Computer Science studies (BSc programme)</span> — Open University</p>
           <p class="text-gray-400">Relevant coursework: Algorithms & Data Structures, Software Engineering, OOP, Web Development</p>
         </div>
       </div>
@@ -409,21 +376,10 @@
 
   <footer class="bg-gray-800/50 py-8 mt-20">
     <div class="max-w-4xl mx-auto px-6 text-center text-gray-400">
-      <p>&copy; 2025 Ian Wu. All rights reserved.</p>
+      <p>&copy; Ian Wu. All rights reserved.</p>
     </div>
   </footer>
 
-  <script>
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-  </script>
+
 </body>
 </html>
