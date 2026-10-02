@@ -1,0 +1,246 @@
+/*
+ * Source stylesheet. Edit this file or the Tailwind classes in the HTML, then
+ * run `npm run build:css` to regenerate assets/css/styles.css. A GitHub Action
+ * also rebuilds it automatically when changes reach the main branch.
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Fallback while the background image loads, or if it fails. Set on html,
+       not body, so it stays behind the fixed background layer below. */
+    background-color: #0b1120;
+  }
+
+  body {
+    @apply font-sans text-gray-100 antialiased;
+  }
+
+  /* Utility classes such as .flex must not override the hidden attribute. */
+  [hidden] {
+    display: none !important;
+  }
+
+  /*
+   * Background image and dark overlay on a fixed layer. Unlike
+   * `background-attachment: fixed`, this also works on iOS Safari.
+   */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-color: #0b1120;
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url("../images/background.jpg");
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      image-set(url("../images/background.webp") type("image/webp"), url("../images/background.jpg") type("image/jpeg"));
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  /* Visible focus for keyboard users */
+  a:focus-visible,
+  button:focus-visible {
+    outline: 3px solid rgba(96, 165, 250, 0.8);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  .gradient-text {
+    background: linear-gradient(to right, #3b82f6, #8b5cf6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .section-title {
+    @apply mb-8 text-3xl font-bold md:text-4xl;
+  }
+
+  .card {
+    @apply rounded-xl border border-gray-700/60 bg-gray-800/90 p-6 shadow-lg shadow-black/20 transition;
+  }
+
+  .card-hover {
+    @apply hover:border-blue-500/50 motion-safe:hover:-translate-y-1;
+  }
+
+  /* Technology tags: tinted chips with light text keep WCAG AA contrast. */
+  .chip {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-sm font-medium ring-1 ring-inset;
+  }
+
+  .chip-sm {
+    @apply px-2.5 py-0.5 text-xs;
+  }
+
+  .btn-link {
+    @apply inline-flex items-center gap-1.5 rounded-lg border border-gray-600 px-3 py-1.5 text-sm font-medium text-gray-200 transition hover:border-blue-400 hover:text-white;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-2 rounded-md px-2 py-1.5 text-sm font-medium text-gray-300 transition hover:text-blue-400;
+  }
+
+  .nav-link[aria-current="true"] {
+    @apply text-blue-400;
+  }
+}
+
+/* ---- Interactive enhancements (activated by assets/js/main.js) ---- */
+@layer components {
+  /* Elements that only make sense when JavaScript is running. */
+  html:not(.js) .js-only {
+    display: none !important;
+  }
+
+  .filter-btn {
+    @apply rounded-full border border-gray-600 bg-gray-900/60 px-4 py-1.5 text-sm font-medium text-gray-300 transition hover:border-blue-400 hover:text-white;
+  }
+
+  .filter-btn[aria-pressed="true"] {
+    @apply border-blue-500 bg-blue-600 text-white;
+  }
+
+  .toggle-btn {
+    @apply rounded-md px-3 py-1 text-xs font-semibold text-gray-300 transition hover:text-white;
+  }
+
+  .toggle-btn[aria-pressed="true"] {
+    @apply bg-gray-700 text-white;
+  }
+
+  .back-to-top {
+    @apply fixed bottom-5 right-5 z-40 flex h-11 w-11 items-center justify-center rounded-full border border-gray-600 bg-gray-900/90 text-gray-200 shadow-lg backdrop-blur-sm transition hover:border-blue-400 hover:text-white;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(0.5rem);
+  }
+
+  .back-to-top.is-shown {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  /* Cursor-following glow on project cards (pointer devices only). */
+  .spotlight {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .spotlight::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(96, 165, 250, 0.12), transparent 45%);
+  }
+
+  .spotlight:hover::after {
+    opacity: 1;
+  }
+
+  #lightbox::backdrop {
+    background: rgba(3, 7, 18, 0.85);
+    backdrop-filter: blur(4px);
+  }
+
+  #playground .pg-point {
+    cursor: pointer;
+    transition: r 0.15s;
+  }
+
+  #playground .pg-point:hover {
+    r: 8;
+  }
+}
+
+@layer utilities {
+  .caret {
+    animation: caret-blink 1s steps(1) infinite;
+  }
+
+  .wave {
+    display: inline-block;
+    transform-origin: 70% 70%;
+    animation: wave 1.6s ease-in-out 0.6s 2;
+  }
+
+  /* Scroll reveal: hidden until main.js marks the element visible. */
+  .js [data-reveal]:not(.is-visible) {
+    opacity: 0;
+  }
+
+  .js [data-reveal].is-visible {
+    animation: reveal-up 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms) backwards;
+  }
+
+  @media print {
+    .js [data-reveal]:not(.is-visible) {
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js [data-reveal]:not(.is-visible) {
+      opacity: 1;
+    }
+
+    .caret,
+    .wave {
+      animation: none;
+    }
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes wave {
+  0%, 60%, 100% { transform: rotate(0deg); }
+  10%, 30% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+}

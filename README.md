@@ -5,8 +5,35 @@ A static HTML portfolio with runnable Python and R statistical demonstrations.
 ## Preview the website
 
 From this directory, run `python -m http.server 8000` and open
-http://localhost:8000. The website uses Tailwind's CDN and Google Fonts, so its
-full styling requires an internet connection. No Node build is needed.
+http://localhost:8000. No build step is needed to preview: the compiled
+stylesheet (`assets/css/styles.css`) is committed. The Inter font loads from
+Google Fonts; offline, the page falls back to the system font.
+
+The site is published with GitHub Pages at https://ianwu.co.uk (see `CNAME`).
+
+## Edit the styles
+
+The page is styled with [Tailwind CSS](https://tailwindcss.com) classes in
+`index.html` and `404.html`, plus custom CSS in `src/input.css`. These are
+compiled into `assets/css/styles.css`, so only the CSS the page uses is shipped.
+
+After adding or changing Tailwind classes, rebuild the stylesheet (Node.js 18+):
+
+```sh
+npm install
+npm run build:css    # or `npm run watch:css` while editing
+```
+
+If you edit files directly on github.com, the **Build CSS** GitHub Action
+rebuilds and commits `assets/css/styles.css` for you when the change reaches
+`main`. On pull requests it checks that the stylesheet is up to date.
+
+## Interactive features
+
+`assets/js/main.js` adds optional enhancements: project filters, the CO₂ chart
+toggle, the regression playground, chart lightbox, scroll effects and the
+copy-email button. The page remains fully readable without JavaScript, and
+animations are disabled for visitors who prefer reduced motion.
 
 ## Reproduce the Python demonstrations
 
