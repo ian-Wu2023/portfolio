@@ -1,0 +1,61 @@
+name: Build CSS
+
+# assets/css/styles.css is compiled from src/input.css and the Tailwind classes
+# used in the HTML/JS. On main, this rebuilds and commits it automatically (so
+# editing index.html on github.com still works). On pull requests, it checks
+# that the committed stylesheet is up to date.
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.html'
+      - 'assets/js/**'
+      - 'src/**'
+      - 'tailwind.config.js'
+      - 'package.json'
+      - 'package-lock.json'
+  pull_request:
+    paths:
+      - '*.html'
+      - 'assets/js/**'
+      - 'src/**'
+      - 'tailwind.config.js'
+      - 'package.json'
+      - 'package-lock.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build:css
+
+      - name: Check the stylesheet is up to date
+        if: github.event_name == 'pull_request'
+        run: |
+          if ! git diff --exit-code -- assets/css/styles.css; then
+            echo "::error file=assets/css/styles.css::Out of date. Run 'npm run build:css' and commit the result."
+            exit 1
+          fi
+
+      - name: Commit the rebuilt stylesheet
+        if: github.event_name != 'pull_request'
+        run: |
+          if git diff --quiet -- assets/css/styles.css; then
+            echo "Stylesheet already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/css/styles.css
+          git commit -m "Rebuild compiled stylesheet"
+          git push
