@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Real-Time Crypto Trading Bot — Ian Wu</title>
+  <meta name="description" content="A JavaScript trading bot that streams live Binance prices over WebSocket and paper-trades on RSI buy/sell signals." />
+  <link rel="canonical" href="https://ianwu.co.uk/projects/crypto-trading-bot/" />
+  <meta name="theme-color" content="#111827" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Real-Time Crypto Trading Bot — Ian Wu" />
+  <meta property="og:description" content="Live Binance prices over WebSocket, RSI buy/sell signals and paper trading, in the browser." />
+  <meta property="og:image" content="https://ianwu.co.uk/assets/images/social-card.jpg" />
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" />
+  <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <header class="border-b border-gray-800 bg-gray-900/80 backdrop-blur-sm">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+      <a href="../../#projects" class="text-sm font-medium text-gray-300 transition hover:text-white"><span aria-hidden="true">←</span> Back to portfolio</a>
+      <a href="../../" class="gradient-text text-xl font-bold">Ian Wu</a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+    <div class="mb-8">
+      <ul class="mb-4 flex flex-wrap gap-2" role="list" aria-label="Technologies">
+        <li class="chip chip-sm bg-yellow-500/15 text-yellow-200 ring-yellow-400/30">JavaScript</li>
+        <li class="chip chip-sm bg-emerald-500/15 text-emerald-200 ring-emerald-400/30">WebSocket</li>
+        <li class="chip chip-sm bg-fuchsia-500/15 text-fuchsia-200 ring-fuchsia-400/30">Binance API</li>
+        <li class="chip chip-sm bg-amber-500/15 text-amber-200 ring-amber-400/30">Rebuilt&nbsp;<time datetime="2026-10-03">3 October 2026</time></li>
+      </ul>
+      <h1 class="text-3xl font-bold text-cyan-400 md:text-4xl">Real-Time Crypto Trading Bot</h1>
+      <p class="mt-3 max-w-3xl text-lg text-gray-300">
+        JavaScript app using WebSockets to stream live Binance market data and compute RSI-based buy/sell signals. UI for price charts, holdings, and trade history.
+      </p>
+      <div class="mt-5 flex flex-wrap gap-3">
+        <a href="https://github.com/ian-Wu2023/portfolio/tree/main/projects/crypto-trading-bot" target="_blank" rel="noopener noreferrer" class="btn-link">View code</a>
+      </div>
+      <p class="mt-4 max-w-3xl rounded-lg border border-amber-400/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100">
+        <strong>Paper trading only.</strong> The bot reads Binance’s public market data and trades a simulated $10,000 balance. It needs no account or API key, places no real orders, and is not financial advice.
+      </p>
+    </div>
+
+    <!-- Controls -->
+    <div class="mb-4 flex flex-wrap items-center gap-3">
+      <label class="sr-only" for="symbol">Market</label>
+      <select id="symbol" class="rounded-lg border border-gray-600 bg-gray-900 px-3 py-2 text-sm font-medium text-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-400">
+        <option value="BTCUSDT">BTC/USDT</option>
+        <option value="ETHUSDT">ETH/USDT</option>
+        <option value="SOLUSDT">SOL/USDT</option>
+        <option value="BNBUSDT">BNB/USDT</option>
+      </select>
+      <span id="status" class="inline-flex items-center gap-2 rounded-full border border-gray-700 bg-gray-900/80 px-3 py-1.5 text-sm text-gray-200" role="status">
+        <span id="status-dot" class="h-2 w-2 rounded-full bg-amber-400" aria-hidden="true"></span>
+        <span id="status-text">Connecting to Binance…</span>
+      </span>
+      <label class="inline-flex cursor-pointer items-center gap-2 text-sm text-gray-200">
+        <input id="auto-trade" type="checkbox" class="h-4 w-4 accent-teal-500" checked />
+        Auto-trade on signals
+      </label>
+      <button type="button" id="reset" class="btn-link">Reset portfolio</button>
+    </div>
+    <div id="notice" class="mb-4 flex flex-wrap items-center gap-3 rounded-lg border border-gray-600 bg-gray-800/90 px-4 py-3 text-sm text-gray-200" hidden>
+      <span>Couldn’t reach Binance from this network (it may be offline or blocked in your region), so the bot is trading <strong>simulated prices</strong>.</span>
+      <button type="button" id="retry-live" class="btn-link">Retry live data</button>
+    </div>
+
+    <!-- Key figures -->
+    <dl class="mb-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <div class="card !p-4"><dt class="text-sm text-gray-400">Price</dt><dd><span id="price" class="mt-1 block text-2xl font-semibold tabular-nums text-white">—</span><span id="change" class="text-sm text-gray-400"></span></dd></div>
+      <div class="card !p-4"><dt class="text-sm text-gray-400">RSI (14)</dt><dd><span id="rsi" class="mt-1 block text-2xl font-semibold tabular-nums text-white">—</span><span id="zone" class="text-sm text-gray-400"></span></dd></div>
+      <div class="card !p-4"><dt class="text-sm text-gray-400">Latest signal</dt><dd><span id="signal" class="mt-1 block text-2xl font-semibold text-white">None yet</span><span id="signal-detail" class="text-sm text-gray-400"></span></dd></div>
+      <div class="card !p-4"><dt class="text-sm text-gray-400">Portfolio value</dt><dd><span id="equity" class="mt-1 block text-2xl font-semibold tabular-nums text-white">—</span><span id="profit" class="text-sm text-gray-400"></span></dd></div>
+    </dl>
+
+    <!-- Chart -->
+    <section class="card mb-4 !p-4 sm:!p-5" aria-labelledby="chart-title">
+      <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
+        <h2 id="chart-title" class="font-semibold text-white">Price and RSI · 1-minute candles</h2>
+        <p class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-400" aria-hidden="true">
+          <span class="inline-flex items-center gap-1.5"><span class="inline-block h-0.5 w-5 rounded bg-gray-300"></span>Price</span>
+          <span class="inline-flex items-center gap-1.5"><span class="text-teal-500">▲</span>Buy</span>
+          <span class="inline-flex items-center gap-1.5"><span class="text-orange-500">▼</span>Sell</span>
+          <span class="inline-flex items-center gap-1.5"><span class="inline-block h-0.5 w-5 rounded bg-violet-500"></span>RSI</span>
+        </p>
+      </div>
+      <div class="relative">
+        <canvas id="chart" class="block h-[340px] w-full touch-pan-y sm:h-[400px]" role="img" aria-labelledby="chart-label"></canvas>
+        <p id="chart-label" class="sr-only"></p>
+        <div id="chart-tooltip" class="pointer-events-none absolute z-10 min-w-[10rem] rounded-lg border border-gray-700 bg-gray-950/95 px-3 py-2 text-xs shadow-xl" hidden></div>
+      </div>
+      <p id="source" class="mt-3 text-xs text-gray-400"></p>
+    </section>
+
+    <div class="grid gap-4 lg:grid-cols-3">
+      <!-- Holdings -->
+      <section class="card min-w-0" aria-labelledby="holdings-title">
+        <h2 id="holdings-title" class="mb-4 font-semibold text-white">Holdings</h2>
+        <dl class="space-y-2.5 text-sm">
+          <div class="flex justify-between"><dt class="text-gray-400">Cash (USDT)</dt><dd id="cash" class="tabular-nums text-gray-100">—</dd></div>
+          <div class="flex justify-between"><dt id="holdings-label" class="text-gray-400">BTC held</dt><dd id="holdings" class="tabular-nums text-gray-100">—</dd></div>
+          <div class="flex justify-between"><dt class="text-gray-400">Position value</dt><dd id="position-value" class="tabular-nums text-gray-100">—</dd></div>
+          <div class="flex justify-between"><dt class="text-gray-400">Fees paid (0.1%)</dt><dd id="fees" class="tabular-nums text-gray-100">—</dd></div>
+          <div class="flex justify-between"><dt class="text-gray-400">Trades</dt><dd id="trade-count" class="tabular-nums text-gray-100">0</dd></div>
+        </dl>
+        <div class="mt-5 grid grid-cols-2 gap-2">
+          <button type="button" id="buy" class="rounded-lg bg-teal-700 px-3 py-2 text-sm font-semibold text-white transition hover:bg-teal-600 disabled:cursor-not-allowed disabled:opacity-40">▲ Buy 25%</button>
+          <button type="button" id="sell" class="rounded-lg bg-orange-700 px-3 py-2 text-sm font-semibold text-white transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-40">▼ Sell all</button>
+        </div>
+        <p class="mt-3 text-xs text-gray-400">Manual orders fill at the latest price.</p>
+      </section>
+
+      <!-- Trade history -->
+      <section class="card min-w-0 lg:col-span-2" aria-labelledby="trades-title">
+        <h2 id="trades-title" class="mb-3 font-semibold text-white">Trade history</h2>
+        <div class="max-h-80 overflow-auto">
+          <table class="w-full min-w-[34rem] text-left text-sm">
+            <thead class="sticky top-0 bg-gray-800 text-xs uppercase tracking-wide text-gray-400">
+              <tr>
+                <th scope="col" class="py-2 pl-3 font-medium">Time</th>
+                <th scope="col" class="py-2 pl-3 font-medium">Side</th>
+                <th scope="col" class="py-2 pl-3 font-medium">Price</th>
+                <th scope="col" class="py-2 pl-3 font-medium">Amount</th>
+                <th scope="col" class="py-2 pl-3 font-medium">Value</th>
+                <th scope="col" class="py-2 pl-3 font-medium">Reason</th>
+              </tr>
+            </thead>
+            <tbody id="trades"></tbody>
+          </table>
+          <p id="trades-empty" class="py-4 text-sm text-gray-400">No trades yet.</p>
+        </div>
+      </section>
+    </div>
+    <p id="announcer" class="sr-only" aria-live="polite"></p>
+
+    <!-- How it works -->
+    <section class="card mt-10" aria-labelledby="how-title">
+      <h2 id="how-title" class="mb-4 text-lg font-semibold text-white">How it works</h2>
+      <div class="grid gap-6 md:grid-cols-2">
+        <div>
+          <h3 class="mb-2 font-medium text-cyan-300">Strategy</h3>
+          <ul class="list-disc space-y-2 pl-5 text-sm text-gray-300 marker:text-cyan-400">
+            <li><strong class="text-white">RSI (Relative Strength Index)</strong> measures how strongly the price has been rising or falling over the last 14 candles, on a 0–100 scale, using Wilder’s smoothing.</li>
+            <li><strong class="text-white">Buy</strong> when RSI falls below 30 (oversold), spending 25% of the cash.</li>
+            <li><strong class="text-white">Sell</strong> the whole position when RSI rises above 70 (overbought).</li>
+            <li>Signals are only taken when a candle <em>closes</em>, so a signal can’t vanish after the bot has acted on it. A 0.1% fee is charged on every trade, like Binance spot trading.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="mb-2 font-medium text-cyan-300">Code structure</h3>
+          <ul class="space-y-2 text-sm text-gray-300">
+            <li><code class="text-cyan-300">BinanceMarket</code> loads recent candles over REST, then streams live candles over a WebSocket, reconnecting with back-off if the connection drops.</li>
+            <li><code class="text-cyan-300">SimulatedMarket</code> has the same interface and takes over if Binance can’t be reached.</li>
+            <li><code class="text-cyan-300">RsiStrategy</code>, <code class="text-cyan-300">PaperPortfolio</code> and <code class="text-cyan-300">TradingBot</code> hold the trading logic, separate from the page, and are unit-tested.</li>
+            <li><code class="text-cyan-300">MarketChart</code> draws the price and RSI on a canvas, with a hover crosshair.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-gray-800 bg-gray-900/80 py-6">
+    <div class="mx-auto max-w-6xl px-4 text-sm text-gray-400 sm:px-6">
+      <a href="../../" class="underline hover:text-gray-200">ianwu.co.uk</a> · &copy; Ian Wu
+    </div>
+  </footer>
+</body>
+</html>

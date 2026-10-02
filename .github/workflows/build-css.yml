@@ -11,7 +11,8 @@ on:
       - '*.html'
       - 'assets/js/**'
       - 'src/**'
-      - 'tailwind.config.js'
+      - 'tailwind.config.cjs'
+      - 'projects/**'
       - 'package.json'
       - 'package-lock.json'
   pull_request:
@@ -19,7 +20,8 @@ on:
       - '*.html'
       - 'assets/js/**'
       - 'src/**'
-      - 'tailwind.config.js'
+      - 'tailwind.config.cjs'
+      - 'projects/**'
       - 'package.json'
       - 'package-lock.json'
   workflow_dispatch:
