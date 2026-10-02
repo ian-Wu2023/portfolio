@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OOP Calculator (Java) — Ian Wu</title>
+  <meta name="description" content="A calculator built in Java with encapsulation and inheritance, playable in the browser." />
+  <link rel="canonical" href="https://ianwu.co.uk/projects/oop-calculator/" />
+  <meta name="theme-color" content="#111827" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="OOP Calculator (Java) — Ian Wu" />
+  <meta property="og:description" content="A calculator built in Java with encapsulation and inheritance, playable in the browser." />
+  <meta property="og:image" content="https://ianwu.co.uk/assets/images/social-card.jpg" />
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" />
+  <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="border-b border-gray-800 bg-gray-900/80 backdrop-blur-sm">
+    <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6">
+      <a href="../../#projects" class="text-sm font-medium text-gray-300 transition hover:text-white"><span aria-hidden="true">←</span> Back to portfolio</a>
+      <a href="../../" class="gradient-text text-xl font-bold">Ian Wu</a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-5xl px-4 py-10 sm:px-6">
+    <div class="mb-10">
+      <ul class="mb-4 flex flex-wrap gap-2" role="list" aria-label="Technologies">
+        <li class="chip chip-sm bg-red-500/15 text-red-200 ring-red-400/30">Java</li>
+        <li class="chip chip-sm bg-gray-500/15 text-gray-200 ring-gray-400/30">OOP</li>
+        <li class="chip chip-sm bg-indigo-500/15 text-indigo-200 ring-indigo-400/30">BlueJ</li>
+        <li class="chip chip-sm bg-amber-500/15 text-amber-200 ring-amber-400/30">Rebuilt&nbsp;<time datetime="2026-10-03">3 October 2026</time></li>
+      </ul>
+      <h1 class="text-3xl font-bold text-rose-400 md:text-4xl">OOP Calculator (Java)</h1>
+      <p class="mt-3 max-w-3xl text-lg text-gray-300">
+        Functional calculator in Java applying encapsulation and inheritance. Clean structure for future features and UI improvements.
+      </p>
+      <div class="mt-5 flex flex-wrap gap-3">
+        <a href="https://github.com/ian-Wu2023/portfolio/tree/main/projects/oop-calculator" target="_blank" rel="noopener noreferrer" class="btn-link">View code</a>
+      </div>
+      <p class="mt-4 max-w-3xl text-sm text-gray-400">
+        The calculator below is a JavaScript port of the Java classes, so it runs in your browser. The Java version, with a Swing interface and tests, is in the code.
+      </p>
+    </div>
+
+    <div class="grid gap-8 lg:grid-cols-5">
+      <!-- Calculator -->
+      <section class="min-w-0 lg:col-span-2" aria-label="Calculator">
+        <div class="mx-auto max-w-sm rounded-2xl border border-gray-700/60 bg-gray-900/90 p-5 shadow-2xl shadow-black/40">
+          <div class="mb-4 rounded-xl bg-gray-950/70 px-4 py-3 text-right">
+            <p id="expression" class="h-6 truncate text-sm text-gray-400"></p>
+            <p id="display" class="truncate text-4xl font-semibold tabular-nums text-white">0</p>
+          </div>
+          <p id="announcer" class="sr-only" aria-live="polite"></p>
+          <div class="grid grid-cols-4 gap-2.5" id="keypad">
+            <button type="button" class="calc-key bg-gray-700 hover:bg-gray-600" data-action="clear" aria-label="All clear">AC</button>
+            <button type="button" class="calc-key bg-gray-700 hover:bg-gray-600" data-action="sign" aria-label="Change sign">±</button>
+            <button type="button" class="calc-key bg-gray-700 hover:bg-gray-600" data-action="backspace" aria-label="Backspace">⌫</button>
+            <button type="button" class="calc-key bg-blue-600 hover:bg-blue-500" data-operation="divide" aria-label="Divide">÷</button>
+
+            <button type="button" class="calc-key bg-gray-800 hover:bg-gray-700" data-digit="7">7</button>
+            <button type="button" class="calc-key bg-gray-800 hover:bg-gray-700" data-digit="8">8</button>
+            <button type="button" class="calc-key bg-gray-800 hover:bg-gray-700" data-digit="9">9</button>
+            <button type="button" class="calc-key bg-blue-600 hover:bg-blue-500" data-operation="multiply" aria-label="Multiply">×</button>
+
+            <button type="button" class="calc-key bg-gray-800 hover:bg-gray-700" data-digit="4">4</button>
+            <button type="button" class="calc-key bg-gray-800 hover:bg-gray-700" data-digit="5">5</button>
+            <button type="button" class="calc-key bg-gray-800 hover:bg-gray-700" data-digit="6">6</button>
+            <button type="button" class="calc-key bg-blue-600 hover:bg-blue-500" data-operation="subtract" aria-label="Subtract">−</button>
+
+            <button type="button" class="calc-key bg-gray-800 hover:bg-gray-700" data-digit="1">1</button>
+            <button type="button" class="calc-key bg-gray-800 hover:bg-gray-700" data-digit="2">2</button>
+            <button type="button" class="calc-key bg-gray-800 hover:bg-gray-700" data-digit="3">3</button>
+            <button type="button" class="calc-key bg-blue-600 hover:bg-blue-500" data-operation="add" aria-label="Add">+</button>
+
+            <button type="button" class="calc-key col-span-2 bg-gray-800 hover:bg-gray-700" data-digit="0">0</button>
+            <button type="button" class="calc-key bg-gray-800 hover:bg-gray-700" data-action="decimal" aria-label="Decimal point">.</button>
+            <button type="button" class="calc-key bg-blue-600 hover:bg-blue-500" data-action="equals" aria-label="Equals">=</button>
+          </div>
+          <p class="mt-4 text-center text-xs leading-6 text-gray-400">
+            Keyboard works too: <kbd>0–9</kbd> <kbd>+</kbd> <kbd>−</kbd> <kbd>*</kbd> <kbd>/</kbd> <kbd>Enter</kbd> <kbd>⌫</kbd> <kbd>Esc</kbd>
+          </p>
+        </div>
+      </section>
+
+      <div class="min-w-0 space-y-8 lg:col-span-3">
+        <!-- History -->
+        <section class="card" aria-labelledby="history-title">
+          <div class="mb-3 flex items-center justify-between">
+            <h2 id="history-title" class="text-lg font-semibold text-white">History</h2>
+            <button type="button" id="clear-history" class="text-sm text-gray-400 underline hover:text-gray-200">Clear</button>
+          </div>
+          <ol id="history" class="max-h-48 space-y-1.5 overflow-y-auto font-mono text-sm text-gray-300" role="list"></ol>
+          <p id="history-empty" class="text-sm text-gray-400">Calculations you finish with = appear here.</p>
+        </section>
+
+        <!-- Class design -->
+        <section class="card" aria-labelledby="design-title">
+          <h2 id="design-title" class="mb-4 text-lg font-semibold text-white">How it’s built</h2>
+          <figure class="mb-6 text-center font-mono text-xs sm:text-sm" aria-label="Class diagram: Addition, Subtraction, Multiplication and Division extend the abstract Operation class">
+            <div class="mx-auto w-max rounded-lg border border-blue-400/50 bg-blue-500/10 px-4 py-2 text-blue-100">
+              <span class="block text-[0.7rem] text-blue-300">«abstract»</span>Operation
+            </div>
+            <p class="my-2 text-gray-400" aria-hidden="true">▲ extends</p>
+            <ul class="flex flex-wrap justify-center gap-2" role="list">
+              <li class="rounded-md border border-gray-600 bg-gray-800 px-2.5 py-1.5 text-gray-200">Addition</li>
+              <li class="rounded-md border border-gray-600 bg-gray-800 px-2.5 py-1.5 text-gray-200">Subtraction</li>
+              <li class="rounded-md border border-gray-600 bg-gray-800 px-2.5 py-1.5 text-gray-200">Multiplication</li>
+              <li class="rounded-md border border-gray-600 bg-gray-800 px-2.5 py-1.5 text-gray-200">Division</li>
+            </ul>
+            <figcaption class="mt-4 font-sans text-gray-400">
+              <code class="text-rose-300">Calculator</code> holds an <code class="text-rose-300">Operation</code> and calls <code class="text-rose-300">apply()</code>, without knowing which subclass it is.
+            </figcaption>
+          </figure>
+          <ul class="list-disc space-y-2 pl-5 text-sm text-gray-300 marker:text-rose-400">
+            <li><strong class="text-white">Inheritance:</strong> each operation extends the abstract <code class="text-rose-300">Operation</code> class and supplies its own symbol and <code class="text-rose-300">apply()</code> method. Adding a new operation means adding a subclass, without changing the calculator.</li>
+            <li><strong class="text-white">Encapsulation:</strong> <code class="text-rose-300">Calculator</code> keeps its state in private fields. The interface can only press keys and read the display, so the state can’t become inconsistent.</li>
+            <li><strong class="text-white">Separation of concerns:</strong> the Swing <code class="text-rose-300">CalculatorPanel</code> (and this web page) only forward key presses, so the user interface can be replaced without touching the arithmetic.</li>
+            <li><strong class="text-white">Tested:</strong> the same behaviours are checked in Java (<code class="text-rose-300">CalculatorTest</code>) and JavaScript, including left-to-right chaining, rounding and division by zero.</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t border-gray-800 bg-gray-900/80 py-6">
+    <div class="mx-auto max-w-5xl px-4 text-sm text-gray-400 sm:px-6">
+      <a href="../../" class="underline hover:text-gray-200">ianwu.co.uk</a> · &copy; Ian Wu
+    </div>
+  </footer>
+</body>
+</html>

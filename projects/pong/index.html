@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pong Game (Pygame) — Ian Wu</title>
+  <meta name="description" content="Classic Pong built with Python and Pygame, playable in the browser against the computer or a friend." />
+  <link rel="canonical" href="https://ianwu.co.uk/projects/pong/" />
+  <meta name="theme-color" content="#111827" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Pong Game (Pygame) — Ian Wu" />
+  <meta property="og:description" content="Classic Pong built with Python and Pygame, playable in the browser." />
+  <meta property="og:image" content="https://ianwu.co.uk/assets/images/social-card.jpg" />
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" />
+  <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="border-b border-gray-800 bg-gray-900/80 backdrop-blur-sm">
+    <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6">
+      <a href="../../#projects" class="text-sm font-medium text-gray-300 transition hover:text-white"><span aria-hidden="true">←</span> Back to portfolio</a>
+      <a href="../../" class="gradient-text text-xl font-bold">Ian Wu</a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-5xl px-4 py-10 sm:px-6">
+    <div class="mb-8">
+      <ul class="mb-4 flex flex-wrap gap-2" role="list" aria-label="Technologies">
+        <li class="chip chip-sm bg-blue-500/15 text-blue-200 ring-blue-400/30">Python</li>
+        <li class="chip chip-sm bg-purple-500/15 text-purple-200 ring-purple-400/30">Pygame</li>
+        <li class="chip chip-sm bg-gray-500/15 text-gray-200 ring-gray-400/30">OOP</li>
+        <li class="chip chip-sm bg-amber-500/15 text-amber-200 ring-amber-400/30">Rebuilt&nbsp;<time datetime="2026-10-03">3 October 2026</time></li>
+      </ul>
+      <h1 class="text-3xl font-bold text-amber-400 md:text-4xl">Pong Game (Pygame)</h1>
+      <p class="mt-3 max-w-3xl text-lg text-gray-300">
+        Classic Pong game built with Pygame. Collision detection, score tracking, input handling. OOP structure for maintainability.
+      </p>
+      <div class="mt-5 flex flex-wrap gap-3">
+        <a href="https://github.com/ian-Wu2023/portfolio/tree/main/projects/pong" target="_blank" rel="noopener noreferrer" class="btn-link">View code</a>
+      </div>
+      <p class="mt-4 max-w-3xl text-sm text-gray-400">
+        This page runs a JavaScript port of the Pygame code, with the same classes and rules, so it plays in your browser. The Python version is in the code.
+      </p>
+    </div>
+
+    <section aria-label="Pong game">
+      <div class="overflow-hidden rounded-2xl border border-gray-700/60 bg-gray-900 shadow-2xl shadow-black/40">
+        <canvas id="court" class="block aspect-[8/5] w-full touch-none select-none" tabindex="0" role="img"
+                aria-label="Pong court. Press 1 for one player or 2 for two players, then Space to serve. W and S move the left paddle; the up and down arrows move the right paddle."></canvas>
+      </div>
+      <div class="mt-4 flex flex-wrap items-center justify-center gap-3">
+        <button type="button" class="btn-link" data-players="1">1 player (vs computer)</button>
+        <button type="button" class="btn-link" data-players="2">2 players</button>
+        <button type="button" class="btn-link" id="pause" hidden>Pause</button>
+        <button type="button" class="btn-link" id="menu" hidden>Menu</button>
+      </div>
+      <p class="mt-4 text-center text-sm text-gray-400">
+        <kbd>W</kbd>/<kbd>S</kbd> left paddle · <kbd>↑</kbd>/<kbd>↓</kbd> right paddle · <kbd>Space</kbd> serve · <kbd>P</kbd> pause.
+        On a phone, drag on your side of the court and tap to serve. First to 7 wins.
+      </p>
+    </section>
+
+    <section class="card mt-10" aria-labelledby="design-title">
+      <h2 id="design-title" class="mb-4 text-lg font-semibold text-white">How it’s built</h2>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div class="rounded-lg bg-gray-900/60 p-3"><p class="font-mono text-sm text-amber-300">Paddle</p><p class="mt-1 text-sm text-gray-300">Moves at a fixed speed and stays inside the court.</p></div>
+        <div class="rounded-lg bg-gray-900/60 p-3"><p class="font-mono text-sm text-amber-300">Ball</p><p class="mt-1 text-sm text-gray-300">Bounces off walls and paddles, speeding up after each hit.</p></div>
+        <div class="rounded-lg bg-gray-900/60 p-3"><p class="font-mono text-sm text-amber-300">ComputerPlayer</p><p class="mt-1 text-sm text-gray-300">Tracks the ball with a dead zone, so it can be beaten.</p></div>
+        <div class="rounded-lg bg-gray-900/60 p-3"><p class="font-mono text-sm text-amber-300">Scoreboard</p><p class="mt-1 text-sm text-gray-300">Counts points and decides the winner.</p></div>
+        <div class="rounded-lg bg-gray-900/60 p-3"><p class="font-mono text-sm text-amber-300">Game</p><p class="mt-1 text-sm text-gray-300">Handles input, the game states and drawing.</p></div>
+      </div>
+      <ul class="mt-5 list-disc space-y-2 pl-5 text-sm text-gray-300 marker:text-amber-400">
+        <li><strong class="text-white">Collision detection:</strong> rectangle overlap tests, run in small steps each frame so even the fastest ball can’t skip through a paddle.</li>
+        <li><strong class="text-white">Bounce angle:</strong> where the ball hits the paddle sets the return angle, up to 55°, so players can aim.</li>
+        <li><strong class="text-white">Frame-rate independent:</strong> movement uses the time since the last frame, so the game runs at the same speed on any screen.</li>
+        <li><strong class="text-white">Tested:</strong> unit tests in Python and JavaScript cover bounces, scoring, serving and a full computer-vs-computer match.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="border-t border-gray-800 bg-gray-900/80 py-6">
+    <div class="mx-auto max-w-5xl px-4 text-sm text-gray-400 sm:px-6">
+      <a href="../../" class="underline hover:text-gray-200">ianwu.co.uk</a> · &copy; Ian Wu
+    </div>
+  </footer>
+</body>
+</html>

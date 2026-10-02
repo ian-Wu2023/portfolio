@@ -28,6 +28,30 @@ If you edit files directly on github.com, the **Build CSS** GitHub Action
 rebuilds and commits `assets/css/styles.css` for you when the change reaches
 `main`. On pull requests it checks that the stylesheet is up to date.
 
+## Projects
+
+The "Other Projects" cards link to working versions in `projects/`, rebuilt on
+3 October 2026. Each has a live demo on the site and its own README:
+
+| Project | Source | Live demo |
+| --- | --- | --- |
+| Real-Time Crypto Trading Bot (JavaScript, WebSocket, Binance API) | [`projects/crypto-trading-bot`](projects/crypto-trading-bot) | https://ianwu.co.uk/projects/crypto-trading-bot/ |
+| Pong Game (Python, Pygame) | [`projects/pong`](projects/pong) | https://ianwu.co.uk/projects/pong/ |
+| OOP Calculator (Java) | [`projects/oop-calculator`](projects/oop-calculator) | https://ianwu.co.uk/projects/oop-calculator/ |
+
+The Pong and calculator demos are JavaScript ports of the Python and Java code
+(same classes and rules), so they run in the browser.
+
+Run all the project tests:
+
+```sh
+npm test                                              # JavaScript (all three demos)
+(cd projects/pong && python -m unittest test_pong)    # Python; needs pygame
+(cd projects/oop-calculator/java && javac -d build *.java && java -cp build CalculatorTest)
+```
+
+The **Tests** GitHub Action runs all three on every pull request.
+
 ## Interactive features
 
 `assets/js/main.js` adds optional enhancements: project filters, the CO₂ chart
@@ -74,9 +98,8 @@ also runs this step; an R failure stops the command with a non-zero exit code.
 - **Descriptive statistics:** Python/NumPy calculations on a synthetic sample.
 
 These examples do not establish findings about real COVID-19 cases, economic
-conditions or forecasting performance on real-world data. The Java/Pong/trading
-project cards have no corresponding source in this repository and are marked
-accordingly. No degree completion date is inferred.
+conditions or forecasting performance on real-world data. No degree completion
+date is inferred.
 
 See [the current project summary](assets/docs/statistical_analysis_portfolio.md).
 The older PDF and code screenshots are retained as historical assets, but are

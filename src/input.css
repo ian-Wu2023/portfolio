@@ -171,6 +171,19 @@
     opacity: 1;
   }
 
+  /* ---- Project demo pages (projects/*) ---- */
+  .calc-key {
+    @apply rounded-xl py-4 text-xl font-semibold text-white shadow-sm transition motion-safe:active:scale-95;
+  }
+
+  .calc-key.is-pressed {
+    @apply ring-2 ring-white/60 motion-safe:scale-95;
+  }
+
+  kbd {
+    @apply rounded border border-gray-600 bg-gray-800 px-1.5 py-0.5 font-mono text-[0.7rem] text-gray-200;
+  }
+
   #lightbox::backdrop {
     background: rgba(3, 7, 18, 0.85);
     backdrop-filter: blur(4px);

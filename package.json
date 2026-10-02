@@ -1,10 +1,12 @@
 {
   "name": "ianwu-portfolio",
   "private": true,
-  "description": "Builds the compiled Tailwind stylesheet for ianwu.co.uk.",
+  "type": "module",
+  "description": "Builds the compiled Tailwind stylesheet and tests the projects on ianwu.co.uk.",
   "scripts": {
     "build:css": "tailwindcss -i ./src/input.css -o ./assets/css/styles.css --minify",
-    "watch:css": "tailwindcss -i ./src/input.css -o ./assets/css/styles.css --watch"
+    "watch:css": "tailwindcss -i ./src/input.css -o ./assets/css/styles.css --watch",
+    "test": "node --test \"tests/*.test.mjs\""
   },
   "devDependencies": {
     "tailwindcss": "3.4.19"
